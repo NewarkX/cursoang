@@ -13,7 +13,7 @@ export class LoginServiceService {
   login(usuario){
       return this.http.post(AppConstants.baseLogin,JSON.stringify(usuario)).subscribe(data => {
         //retorno http
-
+        console.info(JSON.stringify(usuario));
         var token = (JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1]);
 
         localStorage.setItem("token", token);

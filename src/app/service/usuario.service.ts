@@ -12,7 +12,7 @@ export class UsuarioService {
 
   }
 
-  getStudentList(): Observable<any>{
+  getStudentList() : Observable<any>{
     return this.http.get<any>(AppConstants.baseUrl);
   }
 }
