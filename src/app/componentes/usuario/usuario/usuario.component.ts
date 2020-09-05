@@ -1,3 +1,4 @@
+import { AppConstants } from './../../../app-constants';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../service/usuario.service';
 import { Observable } from 'rxjs';
@@ -11,6 +12,7 @@ import { User } from '../../../model/user';
 export class UsuarioComponent implements OnInit {
 
   students: Observable<User[]>;
+  nome: String;
 
   constructor(private usuarioService: UsuarioService) { }
 
@@ -26,6 +28,12 @@ export class UsuarioComponent implements OnInit {
       this.usuarioService.getStudentList().subscribe(data =>{
         this.students = data;
       });
+    });
+  }
+
+  consultarUser(){
+    this.usuarioService.consultarUser(this.nome).subscribe(data =>{
+      this.students = data;
     });
   }
 
