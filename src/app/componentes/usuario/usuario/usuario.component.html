@@ -1,14 +1,18 @@
-<table>
-  <thead>
-    <th>ID</th>
-    <th>Nome</th>
+<table class="table">
+  <thead class="thread-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+
+    </tr>
   </thead>
-
-<tbody>
-  <tr *ngFor="let student of students">
-    <td>{{student.id}}</td>
-    <td>{{student.nome}}</td>
-  </tr>
-</tbody>
-
+  <tbody>
+    <tr *ngFor="let student of students ">
+      <td>{{student.id}}</td>
+      <td>{{student.nome}}</td>
+      <td>
+        <button  (click)="deleteUsuario(student.id)" class="btn btn-primary" >Delete</button>
+      </td>
+    </tr>
+  </tbody>
 </table>

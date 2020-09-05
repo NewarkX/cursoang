@@ -8,26 +8,31 @@ import {Router} from '@angular/router';
 })
 export class LoginServiceService {
 
-  constructor(private http: HttpClient,private router: Router ) { }
 
-  login(usuario){
-      return this.http.post(AppConstants.baseLogin,JSON.stringify(usuario)).subscribe(data => {
-        //retorno http
-        console.info(JSON.stringify(usuario));
-        var token = (JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1]);
+  constructor(private http: HttpClient, private router: Router) { }
 
-        localStorage.setItem("token", token);
+    login(usuario){
 
-        console.info("Token: " + localStorage.getItem("token"));
+       return this.http.post(AppConstants.baseLogin ,JSON.stringify(usuario)).subscribe(data => {
 
-        this.router.navigate(['home']);
+          /*Retorno Http*/
 
-      },
-        error => {
-            console.error("Erro ao fazer login");
-            alert('Acesso Negado');
-        }
-      );
-  }
+          var token = JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1];
+
+          localStorage.setItem("token", token);
+
+          console.info("Token: " + localStorage.getItem("token"));
+
+          this.router.navigate(['home']);
+
+
+       },
+         error => {
+
+          console.error("Erro ao fazer login ");
+          alert('Acesso Negado!')
+         }
+       );
+    }
 
 }

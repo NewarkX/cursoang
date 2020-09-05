@@ -4,20 +4,29 @@ import { Observable } from 'rxjs';
 import { User } from '../../../model/user';
 
 @Component({
-  selector: 'app-usuario',
+  selector: 'app-home',
   templateUrl: './usuario.component.html',
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
 
-  students : Observable<User[]>
+  students: Observable<User[]>;
 
   constructor(private usuarioService: UsuarioService) { }
 
-  ngOnInit(): void {
-    this.usuarioService.getStudentList().subscribe(data => {
+    ngOnInit() {
+      this.usuarioService.getStudentList().subscribe(data =>{
       this.students = data;
-     });
+    });
+  }
+
+  deleteUsuario(id:Number){
+    this.usuarioService.deletarUsuario(id).subscribe(data => {
+      console.log("retorno do metodo delete: " + data);
+      this.usuarioService.getStudentList().subscribe(data =>{
+        this.students = data;
+      });
+    });
   }
 
 }

@@ -1,15 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component'; // requisicoes ajax
 import { RouterModule,Routes } from '@angular/router';
-import {ModuleWithProviders} from '@angular/compiler/src/core';
+import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { LoginComponent } from './login/login.component';
-import {HeaderInterceptorModule} from './service/header-interceptor.service';
+import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { UsuarioComponent } from './componentes/usuario/usuario/usuario.component';
 
 export const appRouters: Routes = [
@@ -34,7 +33,7 @@ export const routes : ModuleWithProviders = RouterModule.forRoot(appRouters);
     FormsModule,
     HttpClientModule,
     routes,
-    HeaderInterceptorModule
+    HttpInterceptorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
