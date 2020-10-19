@@ -1,3 +1,4 @@
+import { GuardiaoGuard } from './service/guardiao.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,12 +15,12 @@ import { UsuarioAddComponent } from './componentes/usuario/usuario/usuario-add/u
 
 
 export const appRouters: Routes = [
-  {path : 'home',component : HomeComponent},
+  {path : 'home',component : HomeComponent, canActivate: [GuardiaoGuard]},
   {path : 'login',component : LoginComponent},
   {path : '',component : LoginComponent},
-  {path : 'usuarioList',component : UsuarioComponent},
-  {path : 'usuarioAdd',component : UsuarioAddComponent},
-  {path : 'usuarioAdd/:id',component : UsuarioAddComponent},
+  {path : 'usuarioList',component : UsuarioComponent, canActivate: [GuardiaoGuard]},
+  {path : 'usuarioAdd',component : UsuarioAddComponent, canActivate: [GuardiaoGuard]},
+  {path : 'usuarioAdd/:id',component : UsuarioAddComponent, canActivate: [GuardiaoGuard]},
 ];
 
 export const routes : ModuleWithProviders = RouterModule.forRoot(appRouters);
