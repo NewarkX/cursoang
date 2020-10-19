@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../service/login-service.service';
 
@@ -10,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   usuario = {login: '', senha: ''};
 
-  constructor(private loginService: LoginServiceService){}
+  constructor(private loginService: LoginServiceService,private router: Router){}
 
 
   public login() {
@@ -19,6 +20,9 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+    if(localStorage.getItem('token') !== null && localStorage.getItem('token').toString().trim() !== null ){
+      this.router.navigate(['home']);
+    }
   }
 
 }
