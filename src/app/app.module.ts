@@ -14,6 +14,7 @@ import { UsuarioComponent } from './componentes/usuario/usuario/usuario.componen
 import { UsuarioAddComponent } from './componentes/usuario/usuario/usuario-add/usuario-add.component';
 
 
+
 export const appRouters: Routes = [
   {path : 'home',component : HomeComponent, canActivate: [GuardiaoGuard]},
   {path : 'login',component : LoginComponent},
@@ -32,7 +33,6 @@ export const routes : ModuleWithProviders = RouterModule.forRoot(appRouters);
     LoginComponent,
     UsuarioComponent,
     UsuarioAddComponent,
-
   ],
   imports: [
     BrowserModule,

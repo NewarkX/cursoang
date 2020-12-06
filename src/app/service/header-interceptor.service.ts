@@ -16,32 +16,33 @@ export class HeaderInterceptorService implements HttpInterceptor {
         headers: req.headers.set('Authorization', token)
       });
 
-      return next.handle(tokenRequest).pipe(
+      return next.handle(tokenRequest);   /* .pipe(
         tap((event: HttpEvent<any>) => {
           if(event instanceof HttpResponse && (event.status === 200 || event.status === 201)){
             console.info('Sucesso na operacao');
           }
         })
-        ,catchError(this.processaError));
+        ,catchError(this.processaError)); */
     } else {
-      return next.handle(req).pipe(catchError(this.processaError));
+      return next.handle(req); /* .pipe(catchError(this.processaError)) */
     }
 
   }
 
   constructor() { }
-
-  processaError(error: HttpErrorResponse){
-    let errorMessage = 'Erro desconhecido';
-    if(error.error instanceof ErrorEvent){
-      console.error(error.error);
-      errorMessage = 'Error: ' + error.error.error;
-    }else{
-      errorMessage = 'Código: ' + error.error.code + '\n Mensagem: ' + error.error.error;
+    /*
+    processaError(error: HttpErrorResponse){
+      let errorMessage = 'Erro desconhecido';
+      if(error.error instanceof ErrorEvent){
+        console.error(error.error);
+        errorMessage = 'Error: ' + error.error.error;
+      }else{
+        errorMessage = 'Código: ' + error.error.code + '\n Mensagem: ' + error.error.error;
+      }
+      window.alert(errorMessage);
+      return throwError(errorMessage);
     }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
-  }
+    */
 }
 
 @NgModule({
