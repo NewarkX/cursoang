@@ -1,3 +1,4 @@
+import { telefone } from './../../../../model/telefone';
 import { UsuarioService } from './../../../../service/usuario.service';
 import { User } from './../../../../model/user';
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UsuarioAddComponent implements OnInit {
 
   usuario = new User();
+  telefone = new telefone();
 
   constructor(private routeActive: ActivatedRoute,private userService: UsuarioService) { }
 
@@ -38,8 +40,32 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
+  addFone(){
+    if(this.usuario.telefones === undefined){
+      this.usuario.telefones =  new Array<telefone>();
+    }
+    this.usuario.telefones.push(this.telefone);
+    this.telefone = new telefone();
+  }
+
   novo(){
     this.usuario = new User();
+    this.telefone = new telefone();
+  }
+
+
+
+  deletarTelefone(id,i){
+
+    if(id == null){
+      this.usuario.telefones.splice(i,1);
+    }
+
+    if(id !== null && confirm("Deseja remover?")){
+      this.userService.removerTelefone(id).subscribe(data => {
+        this.usuario.telefones.splice(i,1);
+      });
+    }
   }
 
 }
