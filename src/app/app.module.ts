@@ -13,6 +13,7 @@ import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { UsuarioComponent } from './componentes/usuario/usuario/usuario.component';
 import { UsuarioAddComponent } from './componentes/usuario/usuario/usuario-add/usuario-add.component';
 import { NgxMaskModule , IConfig } from 'ngx-mask';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 export const appRouters: Routes = [
@@ -43,7 +44,8 @@ export const optionsMask : Partial<IConfig> | (() => Partial<IConfig>) = {};
     HttpClientModule,
     routes,
     HttpInterceptorModule,
-    NgxMaskModule.forRoot(optionsMask)
+    NgxMaskModule.forRoot(optionsMask),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
